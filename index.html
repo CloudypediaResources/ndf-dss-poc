@@ -6,12 +6,11 @@
     <title>
         نظام التوصية لصندوق التنمية الوطني
     </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="./assets/bootstrap/css/bootstrap.rtl.min.css" rel="stylesheet" >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+          rel="stylesheet">
 
     <style>
         body {
@@ -51,12 +50,12 @@
             }
         }
 
-        /*.step {*/
-        /*    display: none;*/
-        /*}*/
-        /*.step.active {*/
-        /*    display: block;*/
-        /*}*/
+        .step {
+            display: none;
+        }
+        .step.active {
+            display: block;
+        }
         .step .control-label {
             font-size: 22px;
             font-weight: 600;
@@ -89,7 +88,7 @@
             width: 100%;
             height: 100%;
         }
-    /*  when .checkbox-item input is hovered, change the background color of the parent .checkbox-item */
+        /*  when .checkbox-item input is hovered, change the background color of the parent .checkbox-item */
         .checkbox-item:has(input:hover) , .checkbox-item:has(input:checked) {
             background-color: #C8A978;
         }
@@ -97,7 +96,7 @@
             color: #fff;
         }
         .nextStep {
-            display: none;
+            /*display: none;*/
             background-color: #C8A978;
             border-color: #C8A978;
             color: #fff;
@@ -113,290 +112,288 @@
 </head>
 <body>
 
-    <div style="" class="trr h-full bg-white d-flex flex-column justify-content-center align-items-center">
-        <div class="p-5">
-            <div class="row justify-content-between align-items-center h-full py-3 mb-5">
-                <div class="col-md-12 d-lg-flex flex-row justify-content-start align-items-center">
-                    <img src="img/ndf-logo-dark.svg" />
-                    <h3 class="mx-5 fw-bold">
-                        مرحبا بكم في نظام التوصية لصندوق التنمية الوطني
-                    </h3>
-                </div>
+<div style="height: 100vh" class="trr h-full bg-white d-flex flex-column justify-content-center align-items-center">
+    <div class="p-5">
+        <div class="row justify-content-between align-items-center h-full py-3 mb-5">
+            <div class="col-md-12 d-lg-flex flex-row justify-content-start align-items-center">
+                <img src="img/ndf-logo-dark.svg" />
+                <h3 class="mx-5 fw-bold">
+                    مرحبا بكم في نظام التوصية لصندوق التنمية الوطني
+                </h3>
             </div>
-            <div class="row justify-content-between align-items-center h-full">
-                <div class="col-lg-3 col-md-12">
+        </div>
+        <div class="row justify-content-between align-items-center h-full">
+            <div class="col-lg-3 col-md-12">
 
-                </div>
-                <div class="col-lg-12 col-md-12">
-                    <form id="recommend" class="row ">
+            </div>
+            <div class="col-lg-12 col-md-12">
+                <form id="recommend" class="row ">
 
-                        <button
-                                class="submit-btn mt-3 btn btn-primary btn-lg "
-                                id="submit" type="submit">احصل علي التوصية</button>
-                        <div id="alerts" class="mt-3"></div>
-                        <a class="btn btn-link mt-1 text-black" href="#" onclick="window.location.reload()">اعادة تعيين</a>
-                    </form>
-                </div>
+                    <button
+                            class="submit-btn mt-3 btn btn-primary btn-lg d-none"
+                            id="submit" type="submit">احصل علي التوصية</button>
+                    <div id="alerts" class="mt-3"></div>
+                    <a class="btn btn-link mt-1 text-black" href="#" onclick="window.location.reload()">اعادة تعيين</a>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-            crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="./assets/bootstrap/js/bootstrap.min.js"></script>
 
-    <script>
-        const userInputsMatrix = {
-            "شركة / مؤسسة": {
-                "مواطن": {
-                    "جديد": {
-                        "محلي (نسبة التصدير اقل من 80%)": {
-                            "الصناعة": {
-                                "تمويل": {
-                                    "رأس مالي": {
-                                        "كبيرة": "صندوق التنمية الصناعية السعودي"
-                                    }
-                                }
-                            },
-                            "الصحة": {
-                                "تمويل": {
-                                    "رأس مالي": {
-                                        "كبيرة": {
-                                            question: "هل التمويل يستهدف البنية التحتية الصحية بمبلغ يفوق 375 مليون ريال ?",
-                                            yes: "صندوق البنية التحتية الوطني",
-                                            no: "صندوق التنمية الصناعية السعودي"
-                                        }
-                                    }
+<script>
+    const userInputsMatrix = {
+        "شركة / مؤسسة": {
+            "مواطن": {
+                "جديد": {
+                    "محلي (نسبة التصدير اقل من 80%)": {
+                        "الصناعة": {
+                            "تمويل": {
+                                "رأس مالي": {
+                                    "كبيرة": "صندوق التنمية الصناعية السعودي"
                                 }
                             }
                         },
-                        "تصدير ( نسية التصدير تفوق 80%)": {
-                            "الصناعة": {
-                                "تمويل": {
-                                    "رأس مالي": {
-                                        "صغيرة": [
-                                            "بنك التنمية الاجتماعية",
-                                            "بنك المنشآت الصغيرة والمتوسطة ",
-                                            "صندوق التنمية الصناعية السعودي"
-                                        ]
+                        "الصحة": {
+                            "تمويل": {
+                                "رأس مالي": {
+                                    "كبيرة": {
+                                        question: "هل التمويل يستهدف البنية التحتية الصحية بمبلغ يفوق 375 مليون ريال ?",
+                                        yes: "صندوق البنية التحتية الوطني",
+                                        no: "صندوق التنمية الصناعية السعودي"
                                     }
+                                }
+                            }
+                        }
+                    },
+                    "تصدير ( نسية التصدير تفوق 80%)": {
+                        "الصناعة": {
+                            "تمويل": {
+                                "رأس مالي": {
+                                    "صغيرة": [
+                                        "بنك التنمية الاجتماعية",
+                                        "بنك المنشآت الصغيرة والمتوسطة ",
+                                        "صندوق التنمية الصناعية السعودي"
+                                    ]
                                 }
                             }
                         }
                     }
                 }
             }
-        };
-        const inputs = {
-            "LegalEntity": {
-                label: "الكيان القانوني",
-                values: [
-                    "شركة / مؤسسة",
-                    "شخصي"
-                ],
-            },
-            "InvestorType": {
-                label: "نوع المستثمر",
-                values: [
-                    "مواطن",
-                    "مستثمر أجنبي"
-                ]
-            },
-            "ProjectStatus": {
-                label: "حالة المشروع",
-                values: [
-                    "جديد",
-                    "قائم"
-                ]
-            },
-            "SupportPurpose": {
-                label: "الغرض من الدعم",
-                values: [
-                    "محلي (نسبة التصدير اقل من 80%)",
-                    "تصدير ( نسية التصدير تفوق 80%)"
-                ]
-            },
-            "Sector": {
-                label: "القطاع",
-                values: [
-                    "التعدين",
-                    "العقاري",
-                    "السياحة",
-                    "التقنية والاتصالات",
-                    "الصناعة",
-                    "الصحة",
-                ]
-            },
-            "SupportType": {
-                label: "نوع الدعم",
-                values: [
-                    "تمويل",
-                    "تدريب وتوظيف",
-                    "خدمات استشارية "
-                ]
-            },
-            "SupportNature": {
-                label: "طبيعة الدعم",
-                values: [
-                    "تشغيلي",
-                    "دعم",
-                    "رأس مالي"
-                ]
-            },
-            "TargetAudience": {
-                label: "الشريحة المستهدفة",
-                values: [
-                    "صغيرة",
-                    "كبيرة"
-                ]
-            }
         }
-
-        function getUserInput() {
-            let userInputs = {};
-            let keys = Object.keys(inputs);
-            for (let i = 0; i < keys.length; i++) {
-                let key = keys[i];
-                userInputs[key] = document.querySelector(`input[name=${key}]:checked`).value;
-            }
-            return userInputs;
+    };
+    const inputs = {
+        "LegalEntity": {
+            label: "الكيان القانوني",
+            values: [
+                "شركة / مؤسسة",
+                "شخصي"
+            ],
+        },
+        "InvestorType": {
+            label: "نوع المستثمر",
+            values: [
+                "مواطن",
+                "مستثمر أجنبي"
+            ]
+        },
+        "ProjectStatus": {
+            label: "حالة المشروع",
+            values: [
+                "جديد",
+                "قائم"
+            ]
+        },
+        "SupportPurpose": {
+            label: "الغرض من الدعم",
+            values: [
+                "محلي (نسبة التصدير اقل من 80%)",
+                "تصدير ( نسية التصدير تفوق 80%)"
+            ]
+        },
+        "Sector": {
+            label: "القطاع",
+            values: [
+                "التعدين",
+                "العقاري",
+                "السياحة",
+                "التقنية والاتصالات",
+                "الصناعة",
+                "الصحة",
+            ]
+        },
+        "SupportType": {
+            label: "نوع الدعم",
+            values: [
+                "تمويل",
+                "تدريب وتوظيف",
+                "خدمات استشارية "
+            ]
+        },
+        "SupportNature": {
+            label: "طبيعة الدعم",
+            values: [
+                "تشغيلي",
+                "دعم",
+                "رأس مالي"
+            ]
+        },
+        "TargetAudience": {
+            label: "الشريحة المستهدفة",
+            values: [
+                "صغيرة",
+                "كبيرة"
+            ]
         }
+    }
 
-        // create a recursive function to get the recommended support based on the user inputs
-        function getRecommendedSupport(userInputs, userInputsMatrix) {
-            let keys = Object.keys(userInputs);
-            let key = keys[0];
-            let value = userInputs[key];
-            let nextUserInputsMatrix = userInputsMatrix[value];
-            if (nextUserInputsMatrix) {
-                delete userInputs[key];
-                return getRecommendedSupport(userInputs, nextUserInputsMatrix);
-            } else {
-                return userInputsMatrix;
-            }
-
-        }
-
-        // listen for submit event on #recommend
-        document.getElementById("recommend").addEventListener("submit", function (e) {
-            e.preventDefault();
-            let userInputs = getUserInput();
-            let recommendedSupport = getRecommendedSupport(userInputs, userInputsMatrix);
-            console.log(recommendedSupport);
-            if (!recommendedSupport) {
-                showAlert("لا يوجد توصية متاحة لهذه البيانات", "danger")
-                return;
-            }
-            if (recommendedSupport.question) {
-                // Use SweetAlert2 to show a confirm dialog
-                Swal.fire({
-                    title: recommendedSupport.question,
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonText: 'نعم',
-                    cancelButtonText: 'لا',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        showAlert(recommendedSupport.yes, "success");
-                    } else {
-                        showAlert(recommendedSupport.no, "success");
-                    }
-                });
-                return;
-            }
-
-            if (Array.isArray(recommendedSupport)) {
-                showAlert(recommendedSupport.join("<br>"), "success")
-            } else if (typeof recommendedSupport === "string") {
-                showAlert(recommendedSupport, "success")
-            } else {
-                showAlert("لا يوجد توصية متاحة لهذه البيانات", "danger")
-            }
-        });
-
-
-        // render the inputs in the form and use the template as an outerHTML
-
-        let form = document.getElementById("recommend");
+    function getUserInput() {
+        let userInputs = {};
         let keys = Object.keys(inputs);
         for (let i = 0; i < keys.length; i++) {
             let key = keys[i];
-            let input = inputs[key];
-            let label = input.label;
-            let values = input.values;
-            let template = `
+            userInputs[key] = document.querySelector(`input[name=${key}]:checked`).value;
+        }
+        return userInputs;
+    }
+
+    // create a recursive function to get the recommended support based on the user inputs
+    function getRecommendedSupport(userInputs, userInputsMatrix) {
+        let keys = Object.keys(userInputs);
+        let key = keys[0];
+        let value = userInputs[key];
+        let nextUserInputsMatrix = userInputsMatrix[value];
+        if (nextUserInputsMatrix) {
+            delete userInputs[key];
+            return getRecommendedSupport(userInputs, nextUserInputsMatrix);
+        } else {
+            return userInputsMatrix;
+        }
+
+    }
+
+    // listen for submit event on #recommend
+    document.getElementById("recommend").addEventListener("submit", function (e) {
+        e.preventDefault();
+        let userInputs = getUserInput();
+        let recommendedSupport = getRecommendedSupport(userInputs, userInputsMatrix);
+        console.log(recommendedSupport);
+        if (!recommendedSupport) {
+            showAlert("لا يوجد توصية متاحة لهذه البيانات", "danger")
+            return;
+        }
+        if (recommendedSupport.question) {
+            // Use SweetAlert2 to show a confirm dialog
+            Swal.fire({
+                title: recommendedSupport.question,
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'نعم',
+                cancelButtonText: 'لا',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    showAlert(recommendedSupport.yes, "success");
+                } else {
+                    showAlert(recommendedSupport.no, "success");
+                }
+            });
+            return;
+        }
+
+        if (Array.isArray(recommendedSupport)) {
+            showAlert(recommendedSupport.join("<br>"), "success")
+        } else if (typeof recommendedSupport === "string") {
+            showAlert(recommendedSupport, "success")
+        } else {
+            showAlert("لا يوجد توصية متاحة لهذه البيانات", "danger")
+        }
+    });
+
+
+    // render the inputs in the form and use the template as an outerHTML
+
+    let form = document.getElementById("recommend");
+    let keys = Object.keys(inputs);
+    for (let i = 0; i < keys.length; i++) {
+        let key = keys[i];
+        let input = inputs[key];
+        let label = input.label;
+        let values = input.values;
+        let template = `
                 <h4 class="control-label mb-4">${label}</h4>
                 <div class="checkbox-items-group">
             `;
-            for (let j = 0; j < values.length; j++) {
-                let value = values[j];
-                template += `
+        for (let j = 0; j < values.length; j++) {
+            let value = values[j];
+            template += `
                 <div class="checkbox-item">
                     <input type="radio" name="${key}" id="${key}-${j}" value="${value}" required>
                     <label for="${key}-${j}">${value}</label>
                 </div>
                 `;
-            }
-            let is_last = i + 1 === keys.length - 1;
-            template += `
+        }
+        let is_last = i + 1 === keys.length - 1;
+        template += `
                 </div>
                 <button onclick="nextStep(event)" data-isLast="${is_last}" data-nextStep="${keys[i + 1]}" type="button" class="btn btn-primary nextStep" >التالي &nbsp; > </button>`;
-            let select = document.createElement("div");
-            select.innerHTML = template;
-            select.classList = "form-group col-md-12 mb-2 step";
-            select.classList += i === 0 ? " active" : "";
-            // add #step-{key} to the select element
-            select.id = `step-${key}`;
+        let select = document.createElement("div");
+        select.innerHTML = template;
+        select.classList = "form-group col-md-12 mb-2 step";
+        select.classList += i === 0 ? " active" : "";
+        // add #step-{key} to the select element
+        select.id = `step-${key}`;
 
-            let submit = document.getElementById("submit");
-            form.insertBefore(select, submit);
+        let submit = document.getElementById("submit");
+        form.insertBefore(select, submit);
+    }
+
+    function nextStep(e) {
+        let islast = e.target.dataset.islast;
+        let nextstep ="step-" + e.target.dataset.nextstep;
+        let currentStep = e.target.parentElement;
+        console.log(currentStep, nextstep, islast)
+        // get the input value
+        let input = currentStep.querySelector("input:checked");
+        if (!input) {
+            showAlert("الرجاء اختيار إجابة", "danger");
+            return;
         }
 
-        function nextStep(e) {
-            let islast = e.target.dataset.islast;
-            let nextstep ="step-" + e.target.dataset.nextstep;
-            let currentStep = e.target.parentElement;
-            console.log(currentStep, nextstep, islast)
-            // get the input value
-            let input = currentStep.querySelector("input:checked");
-            if (!input) {
-                showAlert("الرجاء اختيار إجابة", "danger");
-                return;
-            }
+        // remove active class from the current step
+        currentStep.classList.remove("active");
 
-            // remove active class from the current step
-            currentStep.classList.remove("active");
-
-            if (islast === "true") {
-                // hide nextStep button in the laststep element
-                document.getElementById(nextstep).querySelector(".nextStep").style.display = "none";
-                // show submit button in the laststep element
-                document.getElementById("submit").classList.remove("d-none");
-            }
-
-            // add active class to the next step
-            document.getElementById(nextstep).classList.add("active");
-            clearAlerts();
+        if (islast === "true") {
+            // hide nextStep button in the laststep element
+            document.getElementById(nextstep).querySelector(".nextStep").style.display = "none";
+            // show submit button in the laststep element
+            document.getElementById("submit").classList.remove("d-none");
         }
 
-        function showAlert(message, type) {
-            clearAlerts();
-            let alert = document.createElement("div");
-            alert.classList = `alert alert-${type}`;
-            alert.innerHTML = message;
-            let form = document.getElementById("alerts");
-            form.insertBefore(alert, form.firstChild);
-        }
+        // add active class to the next step
+        document.getElementById(nextstep).classList.add("active");
+        clearAlerts();
+    }
 
-        function clearAlerts() {
-            let alerts = document.querySelectorAll(".alert");
-            for (let i = 0; i < alerts.length; i++) {
-                alerts[i].remove();
-            }
-        }
+    function showAlert(message, type) {
+        clearAlerts();
+        let alert = document.createElement("div");
+        alert.classList = `alert alert-${type}`;
+        alert.innerHTML = message;
+        let form = document.getElementById("alerts");
+        form.insertBefore(alert, form.firstChild);
+    }
 
-    </script>
+    function clearAlerts() {
+        let alerts = document.querySelectorAll(".alert");
+        for (let i = 0; i < alerts.length; i++) {
+            alerts[i].remove();
+        }
+    }
+
+</script>
 
 </body>
 </html>
